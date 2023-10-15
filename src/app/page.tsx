@@ -1,5 +1,11 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { Metadata } from "next";
+import Image from "next/image";
+import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "Fotoshots",
+  description: "Photographer booking System by Joy Barua",
+};
 
 export default function Home() {
   return (
@@ -15,7 +21,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -91,5 +97,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
