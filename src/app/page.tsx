@@ -1,5 +1,8 @@
-import HomePage from "@/components/ui/Home";
+import dynamic from "next/dynamic";
+
 import { Metadata } from "next";
+
+const HomePage = dynamic(() => import("@/components/ui/Home"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "Fotoshots",

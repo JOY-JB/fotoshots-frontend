@@ -1,7 +1,20 @@
 "use client";
 
-import { Layout, Menu, MenuProps } from "antd";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import { UserOutlined } from "@ant-design/icons";
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Layout,
+  Menu,
+  MenuProps,
+  Space,
+  Typography,
+} from "antd";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import logo from "../../../public/images/logo.png";
 import AboutUsSection from "./MainHome/AboutUs";
 import BlogSection from "./MainHome/Blog";
@@ -13,30 +26,51 @@ import ReviewAndRating from "./MainHome/ReviewAndRating";
 import ServicesSection from "./MainHome/services";
 
 const { Header, Content } = Layout;
+const { Title } = Typography;
 
 const HomePage = () => {
+  const [role, setRole] = useState();
+
+  const logout = () => {
+    removeUserInfo();
+    setRole(undefined);
+  };
+
   const items: MenuProps["items"] = [
     {
-      label: "Home",
+      label: <Link href={"/"}>Home</Link>,
       key: "home",
     },
     {
-      label: "Dashboard",
+      label: <Link href={"/dashboard"}>Dashboard</Link>,
       key: "dashboard",
     },
     {
-      label: "Services",
+      label: <Link href={"/services"}>Services</Link>,
       key: "services",
     },
     {
       label: "Photographers",
       key: "photographers",
     },
+  ];
+
+  const avatarItems: MenuProps["items"] = [
     {
-      label: "Login",
-      key: "login",
+      key: "0",
+      label: (
+        <Button type="text" danger onClick={logout}>
+          Logout
+        </Button>
+      ),
     },
   ];
+
+  useEffect(() => {
+    const { role } = getUserInfo() as any;
+
+    setRole(role);
+  }, []);
 
   return (
     <Layout className="layout" style={{ minHeight: "100vh" }}>
@@ -50,7 +84,6 @@ const HomePage = () => {
           WebkitBackdropFilter: "blur(6px)",
           borderRadius: "10px",
           border: "1px solid rgba(255, 255, 255, 0.18)",
-          marginBottom: "2rem",
         }}
       >
         <Image src={logo} width={150} alt="logo" />
@@ -66,12 +99,43 @@ const HomePage = () => {
             backgroundColor: "transparent",
           }}
         />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "center",
+            minWidth: "12%",
+          }}
+        >
+          {role ? (
+            <>
+              <Title level={5} style={{ margin: "auto 8px" }}>
+                {role === "SUPER_ADMIN"
+                  ? "Super Admin"
+                  : role === "ADMIN"
+                  ? "Admin"
+                  : role === "PHOTOGRAPHER"
+                  ? "Photographer"
+                  : "User"}
+              </Title>
+              <Dropdown
+                menu={{ items: avatarItems }}
+                placement="bottomRight"
+                arrow
+              >
+                <Space wrap size={16}>
+                  <Avatar size="large" icon={<UserOutlined />} />
+                </Space>
+              </Dropdown>
+            </>
+          ) : (
+            <Link href={"/login"}>
+              <Button type="primary">Login</Button>
+            </Link>
+          )}
+        </div>
       </Header>
-      <Content
-        style={{
-          padding: "0 50px",
-        }}
-      >
+      <Content>
         <HeroSection />
         <AboutUsSection />
         <ServicesSection />
@@ -80,9 +144,6 @@ const HomePage = () => {
         <BlogSection />
         <FaqSection />
       </Content>
-      {/* <Footer style={{ textAlign: "center" }}>
-        Photographer Booking site ©2023 Created by Joy Barua
-      </Footer> */}
       <AppFooter />
     </Layout>
   );

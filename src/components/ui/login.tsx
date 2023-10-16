@@ -8,6 +8,7 @@ import { storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
 import loginImage from "../../assets/login.png";
@@ -90,6 +91,10 @@ const LoginPageComponent = () => {
               Login
             </Button>
           </Form>
+
+          <p style={{ marginTop: "35px", textAlign: "center" }}>
+            Not registered yet? <Link href="/register">registration here</Link>
+          </p>
         </div>
       </Col>
     </Row>

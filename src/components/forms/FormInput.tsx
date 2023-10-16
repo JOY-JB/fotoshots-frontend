@@ -33,7 +33,7 @@ const FormInput = ({
   const errorMessage = getErrorMessageByPropertyName(errors, name);
 
   return (
-    <>
+    <div style={{ margin: "8px 0px" }}>
       {label ? label : null}
 
       <Controller
@@ -61,7 +61,7 @@ const FormInput = ({
       />
 
       <small style={{ color: "red" }}>{errorMessage}</small>
-    </>
+    </div>
   );
 };
 

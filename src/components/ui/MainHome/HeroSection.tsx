@@ -62,7 +62,6 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-          {/* Add more carousel items as needed */}
         </Carousel>
       </Content>
     </Layout>
