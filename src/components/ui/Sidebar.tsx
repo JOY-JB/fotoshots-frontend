@@ -28,10 +28,10 @@ const Sidebar = () => {
       <div
         style={{
           color: "white",
-          fontSize: "2rem",
+          fontSize: collapsed ? "1rem" : "2rem",
           fontWeight: "bold",
           textAlign: "center",
-          marginBottom: "1rem",
+          margin: "1rem 0",
         }}
       >
         Fotoshots

@@ -7,7 +7,7 @@ type IItems = {
   link?: string;
 }[];
 
-const UMBreadCrumb = ({ items }: { items: IItems }) => {
+const MyBreadCrumb = ({ items }: { items: IItems }) => {
   const BreadCrumbItems = [
     {
       title: (
@@ -30,4 +30,4 @@ const UMBreadCrumb = ({ items }: { items: IItems }) => {
   );
 };
 
-export default UMBreadCrumb;
+export default MyBreadCrumb;

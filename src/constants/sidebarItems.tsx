@@ -10,23 +10,25 @@ import { MenuProps } from "antd";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 
-export const sidebarItems = (role: string) => {
+export const sidebarItems = (data: string) => {
   const defaultSidebarItems: MenuProps["items"] = [
     {
-      label: "Profile",
+      label: <Link href={`/profile`}>Account Profile</Link>,
       key: "profile",
       icon: <ProfileOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}`}>Account Profile</Link>,
-          key: `/${role}/profile`,
-        },
-      ],
     },
   ];
 
+  const role =
+    data === "SUPER_ADMIN"
+      ? "super-admin"
+      : data === "ADMIN"
+      ? "admin"
+      : data === "PHOTOGRAPHER"
+      ? "photographer"
+      : "client";
+
   const adminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
     {
       label: "User Management",
       key: "user-management",
@@ -99,10 +101,10 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
+    ...defaultSidebarItems,
   ];
 
   const superAdminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
     {
       label: <Link href={`/${role}/add-admin`}>Add Admin</Link>,
       icon: <UserAddOutlined />,
@@ -113,10 +115,10 @@ export const sidebarItems = (role: string) => {
       icon: <TableOutlined />,
       key: `/${role}/manage-admin`,
     },
+    ...defaultSidebarItems,
   ];
 
   const photographerSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
     {
       label: "Manage Services",
       key: "manage-service",
@@ -136,10 +138,10 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
+    ...defaultSidebarItems,
   ];
 
   const clientSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
     {
       label: <Link href={`/${role}/services`}>Services</Link>,
       icon: <TableOutlined />,
@@ -155,12 +157,13 @@ export const sidebarItems = (role: string) => {
       icon: <ThunderboltOutlined />,
       key: `/${role}/bookings/history`,
     },
+    ...defaultSidebarItems,
   ];
 
-  if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
-  else if (role === USER_ROLE.ADMIN) return adminSidebarItems;
-  else if (role === USER_ROLE.PHOTOGRAPHER) return photographerSidebarItems;
-  else if (role === USER_ROLE.CLIENT) return clientSidebarItems;
+  if (data === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
+  else if (data === USER_ROLE.ADMIN) return adminSidebarItems;
+  else if (data === USER_ROLE.PHOTOGRAPHER) return photographerSidebarItems;
+  else if (data === USER_ROLE.CLIENT) return clientSidebarItems;
   else {
     return defaultSidebarItems;
   }
