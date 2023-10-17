@@ -1,5 +1,6 @@
 import {
   AppstoreOutlined,
+  DashboardOutlined,
   ProfileOutlined,
   ScheduleOutlined,
   TableOutlined,
@@ -29,6 +30,11 @@ export const sidebarItems = (data: string) => {
       : "client";
 
   const adminSidebarItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/dashboard`}>Dashboard</Link>,
+      key: "dashboard",
+      icon: <DashboardOutlined />,
+    },
     {
       label: "User Management",
       key: "user-management",
@@ -106,6 +112,11 @@ export const sidebarItems = (data: string) => {
 
   const superAdminSidebarItems: MenuProps["items"] = [
     {
+      label: <Link href={`/dashboard`}>Dashboard</Link>,
+      key: "dashboard",
+      icon: <DashboardOutlined />,
+    },
+    {
       label: <Link href={`/${role}/add-admin`}>Add Admin</Link>,
       icon: <UserAddOutlined />,
       key: `/${role}/add-admin`,
@@ -119,6 +130,11 @@ export const sidebarItems = (data: string) => {
   ];
 
   const photographerSidebarItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/dashboard`}>Dashboard</Link>,
+      key: "dashboard",
+      icon: <DashboardOutlined />,
+    },
     {
       label: "Manage Services",
       key: "manage-service",
@@ -142,6 +158,11 @@ export const sidebarItems = (data: string) => {
   ];
 
   const clientSidebarItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/dashboard`}>Dashboard</Link>,
+      key: "dashboard",
+      icon: <DashboardOutlined />,
+    },
     {
       label: <Link href={`/${role}/services`}>Services</Link>,
       icon: <TableOutlined />,
