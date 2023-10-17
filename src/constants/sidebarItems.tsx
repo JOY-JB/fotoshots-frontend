@@ -41,52 +41,28 @@ export const sidebarItems = (data: string) => {
       icon: <TableOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/users`}>Users List</Link>,
-          key: `/${role}/users`,
+          label: (
+            <Link href={`/${role}/users/photographers`}>
+              Photographers List
+            </Link>
+          ),
+          key: `/${role}/users/photographers`,
         },
         {
-          label: <Link href={`/${role}/users/create`}>Create User</Link>,
-          key: `/${role}/academic/department`,
-        },
-        {
-          label: <Link href={`/${role}/users/edit`}>Edit User</Link>,
-          key: `/${role}/academic/semester`,
+          label: <Link href={`/${role}/users/clients`}>Clients List</Link>,
+          key: `/${role}/users/clients`,
         },
       ],
     },
     {
-      label: "Service Management",
+      label: <Link href={`/${role}/services`}>Service Management</Link>,
       key: "service-management",
       icon: <AppstoreOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}/services`}>Services List</Link>,
-          key: `/${role}/services`,
-        },
-        {
-          label: <Link href={`/${role}/services/create`}>Create Service</Link>,
-          key: `/${role}/services/create`,
-        },
-        {
-          label: <Link href={`/${role}/services/edit`}>Edit Service</Link>,
-          key: `/${role}/services/edit`,
-        },
-      ],
     },
     {
-      label: "Booking Management",
+      label: <Link href={`/${role}/bookings`}>Bookings Management</Link>,
       key: "booking-management",
       icon: <AppstoreOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}/bookings`}>Bookings List</Link>,
-          key: `/${role}/services`,
-        },
-        {
-          label: <Link href={`/${role}/booking/edit`}>Edit Booking</Link>,
-          key: `/${role}/booking/edit`,
-        },
-      ],
     },
     {
       label: "Content Management",
@@ -94,16 +70,12 @@ export const sidebarItems = (data: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/content`}>Content List</Link>,
-          key: `/${role}/content`,
+          label: <Link href={`/${role}/content/blog-list`}>Blog List</Link>,
+          key: `/${role}/content/blog-list`,
         },
         {
-          label: <Link href={`/${role}/content/create`}>Create Content</Link>,
-          key: `/${role}/content/create`,
-        },
-        {
-          label: <Link href={`/${role}/content/edit`}>Edit Content</Link>,
-          key: `/${role}/content/edit`,
+          label: <Link href={`/${role}/content/faq-list`}>FAQ List</Link>,
+          key: `/${role}/content/faq-list`,
         },
       ],
     },

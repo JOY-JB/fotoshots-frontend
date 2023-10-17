@@ -1,4 +1,7 @@
+import { Typography } from "antd";
 import React from "react";
+
+const { Title } = Typography;
 
 type ActionBarProps = {
   title?: string;
@@ -8,7 +11,7 @@ type ActionBarProps = {
 const ActionBar = ({ title, children }: ActionBarProps) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <Title level={3}>{title}</Title>
       <div
         style={{
           display: "flex",

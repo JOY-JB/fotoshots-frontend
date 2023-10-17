@@ -1,10 +1,12 @@
+import { useDebounce } from "@/hooks";
 import {
   useDeleteAdminMutation,
   useGetAdminsQuery,
 } from "@/redux/api/adminApi";
-import { DeleteFilled } from "@ant-design/icons";
-import { Button, message } from "antd";
+import { DeleteFilled, ReloadOutlined } from "@ant-design/icons";
+import { Button, Input, message } from "antd";
 import React, { useState } from "react";
+import ActionBar from "./ActionBar";
 import MyModal from "./MyModal";
 import MyTable from "./MyTable";
 
@@ -15,12 +17,19 @@ const AdminsTable = () => {
   const [page, setPage] = useState<number>(1);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   const query: Record<string, any> = {};
   query["limit"] = pageLimit;
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
+
+  const debouncedTerm = useDebounce({ searchQuery: email, delay: 600 });
+
+  if (!!debouncedTerm) {
+    query["email"] = debouncedTerm;
+  }
 
   const { data, isLoading } = useGetAdminsQuery(query);
   const [deleteAdmin] = useDeleteAdminMutation();
@@ -85,8 +94,36 @@ const AdminsTable = () => {
     setSortOrder(order === "ascend" ? "asc" : "desc");
   };
 
+  const handleReset = () => {
+    setEmail("");
+    setSortBy("");
+    setSortOrder("");
+  };
+
   return (
     <>
+      <ActionBar title="Admin List">
+        <Input
+          type="text"
+          value={email}
+          placeholder="Search by email"
+          style={{
+            width: "20%",
+          }}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div>
+          {(!!sortBy || !!sortOrder || !!email) && (
+            <Button
+              type="dashed"
+              style={{ marginRight: "5px" }}
+              onClick={handleReset}
+            >
+              <ReloadOutlined />
+            </Button>
+          )}
+        </div>
+      </ActionBar>
       <MyTable
         loading={isLoading}
         columns={adminListColumns}
