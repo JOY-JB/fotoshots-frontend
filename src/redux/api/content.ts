@@ -34,7 +34,7 @@ export const contentApi = baseApi.injectEndpoints({
 
     getAllBlogPosts: build.query({
       query: () => ({
-        url: `${BLOG_URL}/blog`,
+        url: BLOG_URL,
         method: "GET",
       }),
       providesTags: [tagTypes.blog],
@@ -69,7 +69,7 @@ export const contentApi = baseApi.injectEndpoints({
     }),
 
     getAllFAQs: build.query({
-      query: (arg: Record<string, any>) => ({
+      query: () => ({
         url: FAQ_URL,
         method: "GET",
       }),
