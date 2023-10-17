@@ -5,6 +5,7 @@ import { useGetPhotographersQuery } from "@/redux/api/photographerApi";
 import { useGetAllServicesQuery } from "@/redux/api/serviceApi";
 import { UserOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
+import ClientsTable from "../ClientsTable";
 import PhotographersTable from "../PhotographersTable";
 
 const SuperAdminDashboard = () => {
@@ -77,8 +78,16 @@ const SuperAdminDashboard = () => {
         </Col>
       </Row>
 
-      <h1 style={{ margin: "40px 0 20px 0" }}>Photographers List</h1>
-      <PhotographersTable />
+      <Row gutter={{ xs: 8, sm: 16 }} align={"middle"} justify={"center"}>
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <h1 style={{ margin: "40px 0 20px 0" }}>Photographers List</h1>
+          <PhotographersTable />
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <h1 style={{ margin: "40px 0 20px 0" }}>Clients List</h1>
+          <ClientsTable />
+        </Col>
+      </Row>
     </>
   );
 };

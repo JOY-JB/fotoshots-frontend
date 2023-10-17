@@ -6,7 +6,7 @@ const { Title } = Typography;
 interface SummaryCardProps {
   title: string;
   value: number;
-  description: string;
+  description?: string;
   color: string;
   icon: React.ReactNode;
 }
