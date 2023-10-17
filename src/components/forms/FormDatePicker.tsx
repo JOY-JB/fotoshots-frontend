@@ -3,6 +3,7 @@
 import { getErrorMessageByPropertyName } from "@/utils/schema-validator";
 import { DatePicker, DatePickerProps } from "antd";
 import dayjs, { Dayjs } from "dayjs";
+import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IFormDatePicker {
@@ -27,6 +28,7 @@ const FormDatePicker = ({
     setValue,
     formState: { errors },
   } = useFormContext();
+  const [date, setDate] = useState(undefined);
 
   const handleOnChange: DatePickerProps["onChange"] = (date, dateString) => {
     onChange ? onChange(date, dateString) : null;
@@ -36,10 +38,6 @@ const FormDatePicker = ({
 
   let errorMessage = getErrorMessageByPropertyName(errors, name);
 
-  // useEffect(() => {
-  //   errorMessage = getErrorMessageByPropertyName(errors, name);
-  // }, []);
-
   return (
     <>
       {label ? label : null}
@@ -47,17 +45,23 @@ const FormDatePicker = ({
       <Controller
         control={control}
         name={name}
-        render={({ field }) => (
-          <DatePicker
-            size={size}
-            defaultValue={dayjs(field.value) || Date.now()}
-            onChange={handleOnChange}
-            style={{
-              width: "100%",
-            }}
-            picker={picker}
-          />
-        )}
+        render={({ field }) => {
+          if (field.value) {
+            setDate(field.value);
+          }
+
+          return (
+            <DatePicker
+              size={size}
+              value={dayjs(date)}
+              onChange={handleOnChange}
+              style={{
+                width: "100%",
+              }}
+              picker={picker}
+            />
+          );
+        }}
       />
 
       <small style={{ color: "red" }}>{errorMessage}</small>
