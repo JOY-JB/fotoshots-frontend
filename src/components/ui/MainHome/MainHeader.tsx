@@ -36,10 +36,6 @@ const MainHeader = () => {
       label: <Link href={"/services"}>Services</Link>,
       key: "services",
     },
-    {
-      label: "Photographers",
-      key: "photographers",
-    },
   ];
 
   const avatarItems: MenuProps["items"] = [

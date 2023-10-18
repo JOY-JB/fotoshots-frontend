@@ -10,7 +10,7 @@ export const bookingApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: BOOKING_URL,
         method: "POST",
-        data: data.body,
+        data: data,
       }),
       invalidatesTags: [tagTypes.booking],
     }),

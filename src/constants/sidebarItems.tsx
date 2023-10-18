@@ -32,6 +32,11 @@ export const sidebarItems = (data: string) => {
 
   const adminSidebarItems: MenuProps["items"] = [
     {
+      label: <Link href={`/`}>Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
+    {
       label: <Link href={`/dashboard`}>Dashboard</Link>,
       key: "dashboard",
       icon: <DashboardOutlined />,
@@ -85,6 +90,11 @@ export const sidebarItems = (data: string) => {
 
   const superAdminSidebarItems: MenuProps["items"] = [
     {
+      label: <Link href={`/`}>Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
+    {
       label: <Link href={`/dashboard`}>Dashboard</Link>,
       key: "dashboard",
       icon: <DashboardOutlined />,
@@ -103,6 +113,11 @@ export const sidebarItems = (data: string) => {
   ];
 
   const photographerSidebarItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/`}>Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
     {
       label: <Link href={`/dashboard`}>Dashboard</Link>,
       key: "dashboard",
@@ -137,11 +152,11 @@ export const sidebarItems = (data: string) => {
       key: "dashboard",
       icon: <DashboardOutlined />,
     },
-    {
-      label: <Link href={`/${role}/services`}>Services</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/services`,
-    },
+    // {
+    //   label: <Link href={`/services`}>Services</Link>,
+    //   icon: <TableOutlined />,
+    //   key: `/services`,
+    // },
     {
       label: <Link href={`/${role}/bookings`}>Service Booking</Link>,
       icon: <ScheduleOutlined />,

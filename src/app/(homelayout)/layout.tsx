@@ -9,7 +9,16 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout className="layout" style={{ minHeight: "100vh" }}>
       <MainHeader />
-      <div style={{ display: "flex", flexGrow: 1 }}>{children}</div>
+      <div
+        style={{
+          display: "flex",
+          flexGrow: 1,
+          flexDirection: "column",
+          padding: "1.5rem",
+        }}
+      >
+        {children}
+      </div>
       <AppFooter />
     </Layout>
   );
