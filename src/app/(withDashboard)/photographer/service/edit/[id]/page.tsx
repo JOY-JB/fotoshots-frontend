@@ -1,7 +1,13 @@
 import MyBreadCrumb from "@/components/ui/MyBreadCrumb";
-import ServicesTable from "@/components/ui/ServiceTable";
+import ServiceEditPage from "@/components/ui/serviceEdit";
 
-const AdminServicesList = () => {
+interface IProps {
+  params: {
+    id: string;
+  };
+}
+
+const AdminServiceEditPage = ({ params }: IProps) => {
   return (
     <>
       <MyBreadCrumb
@@ -12,12 +18,13 @@ const AdminServicesList = () => {
           },
           {
             label: "Services",
+            link: `/photographer/service`,
           },
         ]}
       />
-      <ServicesTable role="admin" />
+      <ServiceEditPage params={params} />
     </>
   );
 };
 
-export default AdminServicesList;
+export default AdminServiceEditPage;

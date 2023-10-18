@@ -1,6 +1,7 @@
 import {
   AppstoreOutlined,
   DashboardOutlined,
+  HomeOutlined,
   ProfileOutlined,
   ScheduleOutlined,
   TableOutlined,
@@ -113,16 +114,12 @@ export const sidebarItems = (data: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/service`}>Services List</Link>,
-          key: `/${role}/services`,
-        },
-        {
           label: <Link href={`/${role}/service/create`}>Create Service</Link>,
           key: `/${role}/service/create`,
         },
         {
-          label: <Link href={`/${role}/service/edit`}>Edit Service</Link>,
-          key: `/${role}/service/edit`,
+          label: <Link href={`/${role}/service`}>Services List</Link>,
+          key: `/${role}/services`,
         },
       ],
     },
@@ -130,6 +127,11 @@ export const sidebarItems = (data: string) => {
   ];
 
   const clientSidebarItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/`}>Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
     {
       label: <Link href={`/dashboard`}>Dashboard</Link>,
       key: "dashboard",

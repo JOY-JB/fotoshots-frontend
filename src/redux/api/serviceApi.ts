@@ -10,7 +10,7 @@ export const serviceApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: SERVICE_URL,
         method: "POST",
-        data: data.body,
+        data: data,
       }),
       invalidatesTags: [tagTypes.service],
     }),

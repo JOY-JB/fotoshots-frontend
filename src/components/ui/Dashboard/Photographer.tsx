@@ -33,8 +33,6 @@ const PhotographerDashboard = () => {
       (booking: IBooking) => booking.status === "COMPLETED"
     ) || [];
 
-  console.log(bookings);
-
   return (
     <>
       <Row gutter={{ xs: 8, sm: 16 }} align={"middle"} justify={"center"}>

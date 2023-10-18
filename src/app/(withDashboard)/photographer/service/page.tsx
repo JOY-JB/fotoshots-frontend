@@ -1,7 +1,7 @@
 import MyBreadCrumb from "@/components/ui/MyBreadCrumb";
-import ServicesTable from "@/components/ui/ServiceTable";
+import PhotographerServiceTable from "@/components/ui/PhotographerServiceTable";
 
-const AdminServicesList = () => {
+const PhotographerServicesList = () => {
   return (
     <>
       <MyBreadCrumb
@@ -15,9 +15,9 @@ const AdminServicesList = () => {
           },
         ]}
       />
-      <ServicesTable role="admin" />
+      <PhotographerServiceTable />
     </>
   );
 };
 
-export default AdminServicesList;
+export default PhotographerServicesList;
