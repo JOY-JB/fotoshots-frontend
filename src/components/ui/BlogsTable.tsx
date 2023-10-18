@@ -6,9 +6,10 @@ import {
   useDeleteBlogPostByIdMutation,
   useGetAllBlogPostsQuery,
 } from "@/redux/api/content";
-import { DeleteFilled } from "@ant-design/icons";
-import { Button, message } from "antd";
-import ActionBar from "./ActionBar";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { Button, Typography, message } from "antd";
+import dayjs from "dayjs";
+import Link from "next/link";
 import MyModal from "./MyModal";
 import MyTable from "./MyTable";
 
@@ -20,6 +21,8 @@ const BlogsTable = () => {
 
   const { data, isLoading } = useGetAllBlogPostsQuery(undefined);
   const [deleteBlog] = useDeleteBlogPostByIdMutation();
+
+  const { Title } = Typography;
 
   const blogs = data?.blogs;
   const meta = data?.meta;
@@ -50,17 +53,32 @@ const BlogsTable = () => {
       dataIndex: "title",
     },
     {
-      title: "Author",
-      dataIndex: "author",
+      title: "Content",
+      dataIndex: "content",
     },
     {
-      title: "Date",
-      dataIndex: "date",
+      title: "Created at",
+      dataIndex: "createdAt",
+      render: (data: string) => {
+        return dayjs(data).format("MMM DD, YYYY hh:mm A");
+      },
+    },
+    {
+      title: "Updated at",
+      dataIndex: "updatedAt",
+      render: (data: string) => {
+        return dayjs(data).format("MMM DD, YYYY hh:mm A");
+      },
     },
     {
       title: "Action",
       render: (data: any) => (
         <>
+          <Link href={`/admin/content/edit-blog/${data.id}`}>
+            <Button type="primary" style={{ margin: "0px 7px" }}>
+              <EditFilled />
+            </Button>
+          </Link>
           <Button type="primary" danger onClick={() => handleOnDelete(data.id)}>
             <DeleteFilled />
           </Button>
@@ -80,7 +98,12 @@ const BlogsTable = () => {
 
   return (
     <>
-      <ActionBar title="Blogs List"></ActionBar>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Title level={2}>Blogs List</Title>
+        <Link href={"/admin/content/create-blog"}>
+          <Button type="primary">Create Blog</Button>
+        </Link>
+      </div>
       <MyTable
         loading={isLoading}
         columns={blogListColumns}

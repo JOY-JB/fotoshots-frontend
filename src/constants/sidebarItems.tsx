@@ -70,12 +70,12 @@ export const sidebarItems = (data: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/content/blog-list`}>Blog List</Link>,
-          key: `/${role}/content/blog-list`,
+          label: <Link href={`/admin/content/blog-list`}>Blog</Link>,
+          key: `/admin/content/blog-list`,
         },
         {
-          label: <Link href={`/${role}/content/faq-list`}>FAQ List</Link>,
-          key: `/${role}/content/faq-list`,
+          label: <Link href={`/admin/content/faq-list`}>FAQ</Link>,
+          key: `/admin/content/faq-list`,
         },
       ],
     },

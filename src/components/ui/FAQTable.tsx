@@ -1,24 +1,27 @@
 "use client";
-import { useState } from "react";
 
 import {
   useDeleteFAQByIdMutation,
   useGetAllFAQsQuery,
 } from "@/redux/api/content";
-import { DeleteFilled } from "@ant-design/icons";
-import { Button, message } from "antd";
-import ActionBar from "./ActionBar";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { Button, Typography, message } from "antd";
+import dayjs from "dayjs";
+import Link from "next/link";
+import React, { useState } from "react";
 import MyModal from "./MyModal";
 import MyTable from "./MyTable";
 
-const FAQTable = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const FAQsTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [faqIdToDelete, setFAQIdToDelete] = useState("");
-  const [pageLimit, setPageLimit] = useState(5);
-  const [page, setPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState<number>(5);
+  const [page, setPage] = useState<number>(1);
 
   const { data, isLoading } = useGetAllFAQsQuery(undefined);
   const [deleteFAQ] = useDeleteFAQByIdMutation();
+
+  const { Title } = Typography;
 
   const faqs = data?.faqs;
   const meta = data?.meta;
@@ -28,7 +31,7 @@ const FAQTable = () => {
     setFAQIdToDelete(id);
   };
 
-  const handleOk = async () => {
+  const handleOk = async (e: React.MouseEvent<HTMLElement>) => {
     setIsModalOpen(false);
     message.loading("Deleting FAQ...");
     try {
@@ -46,16 +49,35 @@ const FAQTable = () => {
   const faqListColumns = [
     {
       title: "Question",
-      dataIndex: "question",
+      dataIndex: "title",
     },
     {
       title: "Answer",
-      dataIndex: "answer",
+      dataIndex: "content",
+    },
+    {
+      title: "Created at",
+      dataIndex: "createdAt",
+      render: (data: string) => {
+        return dayjs(data).format("MMM DD, YYYY hh:mm A");
+      },
+    },
+    {
+      title: "Updated at",
+      dataIndex: "updatedAt",
+      render: (data: string) => {
+        return dayjs(data).format("MMM DD, YYYY hh:mm A");
+      },
     },
     {
       title: "Action",
       render: (data: any) => (
         <>
+          <Link href={`/admin/content/edit-faq/${data.id}`}>
+            <Button type="primary" style={{ margin: "0px 7px" }}>
+              <EditFilled />
+            </Button>
+          </Link>
           <Button type="primary" danger onClick={() => handleOnDelete(data.id)}>
             <DeleteFilled />
           </Button>
@@ -75,7 +97,12 @@ const FAQTable = () => {
 
   return (
     <>
-      <ActionBar title="FAQ List"></ActionBar>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Title level={2}>FAQs List</Title>
+        <Link href={"/admin/content/create-faq"}>
+          <Button type="primary">Create FAQ</Button>
+        </Link>
+      </div>
       <MyTable
         loading={isLoading}
         columns={faqListColumns}
@@ -100,4 +127,4 @@ const FAQTable = () => {
   );
 };
 
-export default FAQTable;
+export default FAQsTable;
