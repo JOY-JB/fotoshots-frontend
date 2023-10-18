@@ -4,7 +4,7 @@ import Form from "@/components/forms/Form";
 import {
   useGetContentByIdQuery,
   useUpdateFAQByIdMutation,
-} from "@/redux/api/content";
+} from "@/redux/api/contentApi";
 import { Button, Col, Row, message } from "antd";
 import FormInput from "../forms/FormInput";
 

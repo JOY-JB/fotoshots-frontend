@@ -49,9 +49,39 @@ export const bookingApi = baseApi.injectEndpoints({
     }),
 
     getBookingsByUser: build.query({
-      query: (userId: string) => ({
+      query: ({
+        userId,
+        arg,
+      }: {
+        userId: string;
+        arg: Record<string, any>;
+      }) => ({
         url: `${BOOKING_URL}/user/${userId}`,
         method: "GET",
+        params: arg,
+      }),
+      transformResponse: (response: IBooking[], meta: IMeta) => ({
+        bookings: response,
+        meta,
+      }),
+      providesTags: [tagTypes.booking],
+    }),
+
+    getBookingsByPhotographer: build.query({
+      query: ({
+        userId,
+        arg,
+      }: {
+        userId: string;
+        arg: Record<string, any>;
+      }) => ({
+        url: `${BOOKING_URL}/photographer/${userId}`,
+        method: "GET",
+        params: arg,
+      }),
+      transformResponse: (response: IBooking[], meta: IMeta) => ({
+        bookings: response,
+        meta,
       }),
       providesTags: [tagTypes.booking],
     }),
@@ -122,6 +152,7 @@ export const {
   useGetBookingsByServiceQuery,
   useGetBookingByIdQuery,
   useGetBookingsByUserQuery,
+  useGetBookingsByPhotographerQuery,
   useUpdateBookingMutation,
   useCancelBookingMutation,
   useAcceptBookingMutation,

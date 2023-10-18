@@ -3,7 +3,7 @@
 import {
   useDeleteFAQByIdMutation,
   useGetAllFAQsQuery,
-} from "@/redux/api/content";
+} from "@/redux/api/contentApi";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import { Button, Typography, message } from "antd";
 import dayjs from "dayjs";

@@ -4,7 +4,7 @@ import Form from "@/components/forms/Form";
 import {
   useGetBookingByIdQuery,
   useUpdateBookingMutation,
-} from "@/redux/api/booking";
+} from "@/redux/api/bookingApi";
 import { Button, Col, Row, message } from "antd";
 import dayjs from "dayjs";
 import FormDatePicker from "../forms/FormDatePicker";

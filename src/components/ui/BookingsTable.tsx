@@ -3,7 +3,7 @@
 import {
   useDeleteBookingMutation,
   useGetAllBookingsQuery,
-} from "@/redux/api/booking";
+} from "@/redux/api/bookingApi";
 import { BookingStatus, IBooking } from "@/types";
 import { DeleteFilled, EditFilled, ReloadOutlined } from "@ant-design/icons";
 import { Button, DatePicker, Divider, Select, Space, message } from "antd";

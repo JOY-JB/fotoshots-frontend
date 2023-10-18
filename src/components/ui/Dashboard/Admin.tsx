@@ -1,6 +1,6 @@
 import SummaryCard from "@/components/SummaryCard";
 import { useGetAdminsQuery } from "@/redux/api/adminApi";
-import { useGetAllBookingsQuery } from "@/redux/api/booking";
+import { useGetAllBookingsQuery } from "@/redux/api/bookingApi";
 import { useGetClientsQuery } from "@/redux/api/clientApi";
 import { useGetAllServicesQuery } from "@/redux/api/serviceApi";
 import {

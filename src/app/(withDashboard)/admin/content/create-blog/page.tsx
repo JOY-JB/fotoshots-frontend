@@ -3,7 +3,7 @@
 import Form from "@/components/forms/Form";
 import FormInput from "@/components/forms/FormInput";
 import MyBreadCrumb from "@/components/ui/MyBreadCrumb";
-import { useCreateBlogPostMutation } from "@/redux/api/content";
+import { useCreateBlogPostMutation } from "@/redux/api/contentApi";
 import { Button, Col, Row, message } from "antd";
 import { useRouter } from "next/navigation";
 
