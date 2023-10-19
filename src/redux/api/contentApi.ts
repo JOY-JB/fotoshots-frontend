@@ -1,4 +1,3 @@
-import { IContent, IMeta } from "@/types";
 import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
@@ -38,10 +37,6 @@ export const contentApi = baseApi.injectEndpoints({
         url: BLOG_URL,
         method: "GET",
       }),
-      transformResponse: (response: IContent[], meta: IMeta) => ({
-        blogs: response,
-        meta,
-      }),
       providesTags: [tagTypes.blog],
     }),
 
@@ -78,10 +73,7 @@ export const contentApi = baseApi.injectEndpoints({
         url: FAQ_URL,
         method: "GET",
       }),
-      transformResponse: (response: IContent[], meta: IMeta) => ({
-        faqs: response,
-        meta,
-      }),
+
       providesTags: [tagTypes.faq],
     }),
 

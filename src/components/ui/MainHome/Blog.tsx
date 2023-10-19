@@ -1,29 +1,17 @@
+import Loading from "@/app/loading";
+import { useGetAllBlogPostsQuery } from "@/redux/api/contentApi";
+import { IContent } from "@/types";
 import { Card, Col, Layout, Row, Typography } from "antd";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 const BlogSection = () => {
-  const blogData = [
-    {
-      title: "10 Tips for Capturing Stunning Sunsets",
-      content:
-        "Sunsets are one of nature's most breathtaking spectacles. To help you capture those stunning moments, we've put together 10 tips for photographing sunsets like a pro.",
-      type: "BLOG",
-    },
-    {
-      title: "The Art of Portrait Photography",
-      content:
-        "Portrait photography is all about capturing the personality and character of your subjects. Learn the art of portrait photography and create stunning portraits.",
-      type: "BLOG",
-    },
-    {
-      title: "Choosing the Right Camera Gear",
-      content:
-        "Selecting the right camera gear is essential for capturing the perfect shot. Our guide helps you choose the gear that best suits your photography needs.",
-      type: "BLOG",
-    },
-  ];
+  const { data: blogData, isLoading } = useGetAllBlogPostsQuery(undefined);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Content
@@ -36,18 +24,19 @@ const BlogSection = () => {
         </Title>
       </div>
       <Row gutter={[16, 16]}>
-        {blogData.map((blog, index) => (
-          <Col key={index} xs={24} sm={12} md={8}>
-            <Card
-              title={blog.title}
-              style={{
-                minHeight: "350px",
-              }}
-            >
-              <Paragraph>{blog.content}</Paragraph>
-            </Card>
-          </Col>
-        ))}
+        {blogData &&
+          blogData.map((blog: IContent, index: number) => (
+            <Col key={index} xs={24} sm={12} md={8}>
+              <Card
+                title={blog.title}
+                style={{
+                  minHeight: "350px",
+                }}
+              >
+                <Paragraph>{blog.content}</Paragraph>
+              </Card>
+            </Col>
+          ))}
       </Row>
     </Content>
   );
