@@ -75,14 +75,17 @@ const ServicesTable = ({ role }: { role: string }) => {
       title: "Title",
       dataIndex: "title",
       sorter: true,
+      width: "18%",
     },
     {
       title: "Description",
       dataIndex: "description",
+      width: "60%",
     },
     {
       title: "Price",
       dataIndex: "price",
+      width: "10%",
     },
     {
       title: "Action",

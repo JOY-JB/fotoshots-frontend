@@ -1,7 +1,7 @@
 import SummaryCard from "@/components/SummaryCard";
-import { useGetAdminsQuery } from "@/redux/api/adminApi";
 import { useGetAllBookingsQuery } from "@/redux/api/bookingApi";
 import { useGetClientsQuery } from "@/redux/api/clientApi";
+import { useGetPhotographersQuery } from "@/redux/api/photographerApi";
 import { useGetAllServicesQuery } from "@/redux/api/serviceApi";
 import {
   CheckCircleOutlined,
@@ -21,7 +21,8 @@ const AdminDashboard = () => {
   const { data: allBookings, isLoading: bookingLoading } =
     useGetAllBookingsQuery({});
   const { data: allClients, isLoading: clientLoading } = useGetClientsQuery({});
-  const { data: allAdmins, isLoading: adminLoading } = useGetAdminsQuery({});
+  const { data: allPhotographers, isLoading: photographersLoading } =
+    useGetPhotographersQuery({});
 
   const pendingBookings =
     allBookings?.bookings?.filter((booking) => booking.status === "PENDING") ||
@@ -95,9 +96,9 @@ const AdminDashboard = () => {
           style={{ marginBottom: "10px" }}
         >
           <SummaryCard
-            title="Total Admins"
-            value={allAdmins?.meta?.total || 0}
-            description="Total number of admins."
+            title="Total Photographers"
+            value={allPhotographers?.meta?.total || 0}
+            description="Total number of photographers."
             color="#3f8600"
             icon={<UserOutlined />}
           />

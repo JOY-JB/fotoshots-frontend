@@ -30,7 +30,7 @@ const BlogSection = () => {
               <Card
                 title={blog.title}
                 style={{
-                  minHeight: "350px",
+                  minHeight: "240px",
                 }}
               >
                 <Paragraph>{blog.content}</Paragraph>

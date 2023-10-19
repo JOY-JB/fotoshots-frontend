@@ -23,9 +23,6 @@ const FAQsTable = () => {
 
   const { Title } = Typography;
 
-  const faqs = data?.faqs;
-  const meta = data?.meta;
-
   const handleOnDelete = async (id: string) => {
     setIsModalOpen(true);
     setFAQIdToDelete(id);
@@ -50,10 +47,12 @@ const FAQsTable = () => {
     {
       title: "Question",
       dataIndex: "title",
+      width: "20%",
     },
     {
       title: "Answer",
       dataIndex: "content",
+      width: "50%",
     },
     {
       title: "Created at",
@@ -61,6 +60,7 @@ const FAQsTable = () => {
       render: (data: string) => {
         return dayjs(data).format("MMM DD, YYYY hh:mm A");
       },
+      width: "8%",
     },
     {
       title: "Updated at",
@@ -68,6 +68,7 @@ const FAQsTable = () => {
       render: (data: string) => {
         return dayjs(data).format("MMM DD, YYYY hh:mm A");
       },
+      width: "8%",
     },
     {
       title: "Action",
@@ -106,12 +107,12 @@ const FAQsTable = () => {
       <MyTable
         loading={isLoading}
         columns={faqListColumns}
-        dataSource={faqs}
+        dataSource={data}
         onPaginationChange={onPaginationChange}
         onTableChange={onTableChange}
         pageSize={pageLimit}
         showSizeChanger={true}
-        totalData={meta?.total}
+        totalData={data?.length}
         showPagination={true}
       />
 

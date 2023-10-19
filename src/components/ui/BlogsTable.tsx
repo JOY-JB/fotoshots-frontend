@@ -24,9 +24,6 @@ const BlogsTable = () => {
 
   const { Title } = Typography;
 
-  const blogs = data?.blogs;
-  const meta = data?.meta;
-
   const handleOnDelete = async (id: string) => {
     setIsModalOpen(true);
     setBlogIdToDelete(id);
@@ -51,10 +48,12 @@ const BlogsTable = () => {
     {
       title: "Title",
       dataIndex: "title",
+      width: "18%",
     },
     {
       title: "Content",
       dataIndex: "content",
+      width: "50%",
     },
     {
       title: "Created at",
@@ -62,6 +61,7 @@ const BlogsTable = () => {
       render: (data: string) => {
         return dayjs(data).format("MMM DD, YYYY hh:mm A");
       },
+      width: "8%",
     },
     {
       title: "Updated at",
@@ -69,6 +69,7 @@ const BlogsTable = () => {
       render: (data: string) => {
         return dayjs(data).format("MMM DD, YYYY hh:mm A");
       },
+      width: "8%",
     },
     {
       title: "Action",
@@ -107,12 +108,12 @@ const BlogsTable = () => {
       <MyTable
         loading={isLoading}
         columns={blogListColumns}
-        dataSource={blogs}
+        dataSource={data}
         onPaginationChange={onPaginationChange}
         onTableChange={onTableChange}
         pageSize={pageLimit}
         showSizeChanger={true}
-        totalData={meta?.total}
+        totalData={data?.length}
         showPagination={true}
       />
 
