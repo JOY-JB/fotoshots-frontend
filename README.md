@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fotoshots Website
 
-## Getting Started
+Welcome to the Fotoshots project! This web application is designed for photographer booking system. where admin and super admin can manage client, photographer, service, service booking, website content management and so on.
 
-First, run the development server:
+## Live Links
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Frontend Live Site](https://fotoshots-frontend.vercel.app/)
+- [Frontend GitHub Repository](https://github.com/JOY-JB/fotoshots-frontend)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Backend server](https://fotoshots-backend.vercel.app/)
+- [Backend GitHub Repository](https://github.com/JOY-JB/fotoshots-backend)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Postman Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Explore API endpoints with Postman. [Postman Documentation](https://documenter.getpostman.com/view/24132938/2s9YRB1WyL)
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **User Registration and Authentication**: Secure registration and authentication system to manage user access.
+- **Service Listings**: Browse and search for photography services based on various criteria.
+- **Booking Management**: Create, view, edit, and cancel bookings.
+- **Role-Based Access**: Distinct roles for clients, photographer, admin and super admin each with specific permissions.
+- **Interactive User Dashboard**: A personalized dashboard for users to manage their profiles and bookings.
+- **Advanced Search**: Efficiently search and filtering for services by title, price and more.
+- **Photographers**: Easily list and manage services offered.
+- **And More**: Additional features and functionalities to enhance the user experience.
