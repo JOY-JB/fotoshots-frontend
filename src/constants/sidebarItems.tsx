@@ -152,20 +152,17 @@ export const sidebarItems = (data: string) => {
       key: "dashboard",
       icon: <DashboardOutlined />,
     },
-    // {
-    //   label: <Link href={`/services`}>Services</Link>,
-    //   icon: <TableOutlined />,
-    //   key: `/services`,
-    // },
     {
       label: <Link href={`/${role}/bookings`}>Service Booking</Link>,
       icon: <ScheduleOutlined />,
       key: `/${role}/bookings`,
     },
     {
-      label: <Link href={`/${role}/bookings/history`}>Booking History</Link>,
+      label: (
+        <Link href={`/${role}/bookings/management`}>Booking Management</Link>
+      ),
       icon: <ThunderboltOutlined />,
-      key: `/${role}/bookings/history`,
+      key: `/${role}/bookings/management`,
     },
     ...defaultSidebarItems,
   ];
