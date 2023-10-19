@@ -54,7 +54,7 @@ const AdminDashboard = () => {
         >
           <SummaryCard
             title="Total Services"
-            value={allServices?.meta.total || 0}
+            value={allServices?.meta?.total || 0}
             description="Total number of services."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
         >
           <SummaryCard
             title="Total Bookings"
-            value={allBookings?.meta.total || 0}
+            value={allBookings?.meta?.total || 0}
             description="Total number of bookings."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
         >
           <SummaryCard
             title="Total Clients"
-            value={allClients?.meta.total || 0}
+            value={allClients?.meta?.total || 0}
             description="Total number of clients."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -96,7 +96,7 @@ const AdminDashboard = () => {
         >
           <SummaryCard
             title="Total Admins"
-            value={allAdmins?.meta.total || 0}
+            value={allAdmins?.meta?.total || 0}
             description="Total number of admins."
             color="#3f8600"
             icon={<UserOutlined />}

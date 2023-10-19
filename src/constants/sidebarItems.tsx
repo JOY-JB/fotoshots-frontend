@@ -2,8 +2,10 @@ import {
   AppstoreOutlined,
   DashboardOutlined,
   HomeOutlined,
+  MessageOutlined,
   ProfileOutlined,
   ScheduleOutlined,
+  StarOutlined,
   TableOutlined,
   ThunderboltOutlined,
   UserAddOutlined,
@@ -163,6 +165,18 @@ export const sidebarItems = (data: string) => {
       ),
       icon: <ThunderboltOutlined />,
       key: `/${role}/bookings/management`,
+    },
+    {
+      label: <Link href={`/client/review-management`}>Review Management</Link>,
+      icon: <StarOutlined />,
+      key: `/client/review-management`,
+    },
+    {
+      label: (
+        <Link href={`/client/feedback-management`}>Feedback Management</Link>
+      ),
+      icon: <MessageOutlined />,
+      key: `/client/feedback-management`,
     },
     ...defaultSidebarItems,
   ];

@@ -102,7 +102,7 @@ const ClientDashboard = () => {
         >
           <SummaryCard
             title="Total Bookings"
-            value={bookings?.meta.total || 0}
+            value={bookings?.meta?.total || 0}
             description="Total number of bookings."
             color="#3f8600"
             icon={<FieldTimeOutlined />}
@@ -148,7 +148,7 @@ const ClientDashboard = () => {
         onTableChange={onTableChange}
         pageSize={pageLimit}
         showSizeChanger={true}
-        totalData={bookingsData?.meta.total}
+        totalData={bookingsData?.meta?.total}
         showPagination={true}
       />
     </>

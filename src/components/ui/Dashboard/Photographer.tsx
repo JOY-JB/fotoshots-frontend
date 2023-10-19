@@ -44,7 +44,7 @@ const PhotographerDashboard = () => {
         >
           <SummaryCard
             title="Total Services"
-            value={services?.meta.total || 0}
+            value={services?.meta?.total || 0}
             description="Total number of services offered."
             color="#3f8600"
             icon={<FieldTimeOutlined />}
@@ -58,7 +58,7 @@ const PhotographerDashboard = () => {
         >
           <SummaryCard
             title="Total Bookings"
-            value={bookings?.meta.total || 0}
+            value={bookings?.meta?.total || 0}
             description="Total number of bookings received."
             color="#3f8600"
             icon={<FieldTimeOutlined />}

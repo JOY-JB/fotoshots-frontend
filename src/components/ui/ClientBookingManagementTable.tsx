@@ -5,6 +5,8 @@ import {
   useCancelBookingMutation,
   useGetBookingsByUserQuery,
 } from "@/redux/api/bookingApi";
+import { useCreateFeedbackMutation } from "@/redux/api/feedbackApi";
+import { useCreateReviewMutation } from "@/redux/api/reviewApi";
 import { getUserInfo } from "@/services/auth.service";
 import { BookingStatus, IBooking } from "@/types";
 import { ReloadOutlined } from "@ant-design/icons";
@@ -13,11 +15,14 @@ import {
   DatePicker,
   DatePickerProps,
   Divider,
+  Input,
+  Rate,
   Select,
   Space,
   TimePicker,
   message,
 } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import dayjs from "dayjs";
 import { useState } from "react";
 import ActionBar from "./ActionBar";
@@ -28,15 +33,27 @@ const ClientBookingManagementTable = () => {
   const [isCancelModalOpen, setIsCancelModalOpen] = useState<boolean>(false);
   const [isAdjustedModalOpen, setIsAdjustedModalOpen] =
     useState<boolean>(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState<boolean>(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] =
+    useState<boolean>(false);
 
   const [newBookingDate, setNewBookingDate] = useState("");
   const [newStartTime, setNewStartTime] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [feedbackText, setFeedbackText] = useState("");
+
+  const [rating, setRating] = useState(0);
   const [newEndTime, setNewEndTime] = useState("");
 
   const [bookingIdToCancelOrAdjust, setBookingIdToCancelOrAdjust] =
     useState("");
+  const [serviceIdToReviewOrFeedback, setServiceIdToReviewOrFeedback] =
+    useState("");
   const [cancelBooking] = useCancelBookingMutation();
   const [adjustBooking] = useAdjustBookingMutation();
+
+  const [CreateReview] = useCreateReviewMutation();
+  const [CreateFeedback] = useCreateFeedbackMutation();
 
   const [pageLimit, setPageLimit] = useState<number>(5);
   const [page, setPage] = useState<number>(1);
@@ -85,9 +102,20 @@ const ClientBookingManagementTable = () => {
     setBookingIdToCancelOrAdjust(id);
   };
 
+  const handleOnReview = (id: string) => {
+    setIsReviewModalOpen(true);
+    setServiceIdToReviewOrFeedback(id);
+  };
+  const handleOnFeedBack = (id: string) => {
+    setIsFeedbackModalOpen(true);
+    setServiceIdToReviewOrFeedback(id);
+  };
+
   const handleCancel = () => {
     setIsAdjustedModalOpen(false);
     setIsCancelModalOpen(false);
+    setIsReviewModalOpen(false);
+    setIsFeedbackModalOpen(false);
   };
 
   const handleCancelBooking = async () => {
@@ -138,6 +166,58 @@ const ClientBookingManagementTable = () => {
       }
     } else {
       message.error("Please fill in all the required fields.");
+    }
+  };
+
+  const handleReview = async () => {
+    if (rating === 0) {
+      message.error("Please select a rating for your review.");
+      return;
+    }
+
+    if (!reviewText) {
+      message.error("Please enter your review text.");
+      return;
+    }
+
+    const reviewData = {
+      rating,
+      comment: reviewText,
+      serviceId: serviceIdToReviewOrFeedback,
+    };
+
+    setIsReviewModalOpen(false);
+
+    try {
+      const res = await CreateReview(reviewData).unwrap();
+
+      res && message.success("Review submitted successful");
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      message.error("An error occurred while submitting the review.");
+    }
+  };
+
+  const handleFeedback = async () => {
+    if (!feedbackText) {
+      message.error("Please enter your feedback.");
+      return;
+    }
+
+    const feedbackData = {
+      message: feedbackText,
+      serviceId: serviceIdToReviewOrFeedback,
+    };
+
+    setIsFeedbackModalOpen(false);
+
+    try {
+      const res = await CreateFeedback(feedbackData).unwrap();
+
+      res && message.success("Feedback submitted successfully");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      message.error("An error occurred while submitting the feedback.");
     }
   };
 
@@ -232,6 +312,16 @@ const ClientBookingManagementTable = () => {
             <Button danger onClick={() => handleOnCancel(data.id)}>
               Cancel
             </Button>
+          ) : data.status === BookingStatus.COMPLETED ? (
+            <>
+              <Button onClick={() => handleOnReview(data.serviceId)}>
+                Review
+              </Button>
+              <Divider type="vertical" />
+              <Button onClick={() => handleOnFeedBack(data.serviceId)}>
+                Feedback
+              </Button>
+            </>
           ) : null}
         </div>
       ),
@@ -242,13 +332,12 @@ const ClientBookingManagementTable = () => {
     { value: BookingStatus.PENDING, label: "Pending" },
     { value: BookingStatus.ACCEPTED, label: "Accepted" },
     { value: BookingStatus.ADJUSTED, label: "Adjusted" },
+    { value: BookingStatus.COMPLETED, label: "Completed" },
   ];
 
   const bookingsData = data?.bookings?.filter((item) => {
     const { status } = item;
-    return (
-      status !== "CANCELED" && status !== "COMPLETED" && status !== "REJECTED"
-    );
+    return status !== "CANCELED" && status !== "REJECTED";
   });
 
   return (
@@ -308,14 +397,32 @@ const ClientBookingManagementTable = () => {
         <p>Are you sure you want to cancel this booking?</p>
       </MyModal>
 
-      {/* <MyModal
-        title="Confirm Adjust Booking"
+      <MyModal
+        title="Select a date and time to adjust this booking"
         handleOk={handleAdjustBooking}
         handleCancel={handleCancel}
         isModalOpen={isAdjustedModalOpen}
       >
-        <p>Are you sure you want to adjust this booking?</p>
-      </MyModal> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            margin: "2rem 0",
+            alignItems: "center",
+          }}
+        >
+          <DatePicker
+            onChange={onDateChange}
+            style={{ width: "50%", display: "block" }}
+          />
+          <br />
+          <TimePicker.RangePicker
+            use12Hours
+            format="h:mm a"
+            onChange={onTimeChange}
+          />
+        </div>
+      </MyModal>
 
       <MyModal
         title="Select a date and time to adjust this booking"
@@ -340,6 +447,49 @@ const ClientBookingManagementTable = () => {
             use12Hours
             format="h:mm a"
             onChange={onTimeChange}
+          />
+        </div>
+      </MyModal>
+
+      <MyModal
+        title="Leave a Review"
+        handleOk={handleReview}
+        handleCancel={handleCancel}
+        isModalOpen={isReviewModalOpen}
+      >
+        <div>
+          <br />
+          <Rate
+            defaultValue={0}
+            onChange={setRating}
+            style={{
+              fontSize: 30,
+              width: "100%",
+              textAlign: "center",
+            }}
+          />
+          <br />
+          <br />
+          <Input
+            placeholder="Your Review"
+            value={reviewText}
+            onChange={(e) => setReviewText(e.target.value)}
+          />
+        </div>
+      </MyModal>
+
+      <MyModal
+        title="Give Feedback"
+        handleOk={handleFeedback}
+        handleCancel={handleCancel}
+        isModalOpen={isFeedbackModalOpen}
+      >
+        <div style={{ margin: "10px 0" }}>
+          <TextArea
+            maxLength={100}
+            placeholder="Your Feedback"
+            value={feedbackText}
+            onChange={(e) => setFeedbackText(e.target.value)}
           />
         </div>
       </MyModal>

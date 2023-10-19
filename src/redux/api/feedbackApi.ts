@@ -21,6 +21,13 @@ export const feedbackApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.feedback],
     }),
+    getFeedbackByUser: build.query({
+      query: (userId: string) => ({
+        url: `${FEEDBACK_URL}/${userId}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.feedback],
+    }),
 
     updateFeedback: build.mutation({
       query: (data) => ({
@@ -45,5 +52,6 @@ export const {
   useCreateFeedbackMutation,
   useDeleteFeedbackMutation,
   useGetFeedbackByServiceQuery,
+  useGetFeedbackByUserQuery,
   useUpdateFeedbackMutation,
 } = feedbackApi;

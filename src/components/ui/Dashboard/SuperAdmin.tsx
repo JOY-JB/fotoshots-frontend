@@ -28,7 +28,7 @@ const SuperAdminDashboard = () => {
         >
           <SummaryCard
             title="Total Service"
-            value={allServices?.meta.total || 0}
+            value={allServices?.meta?.total || 0}
             description="Total number of services."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -42,7 +42,7 @@ const SuperAdminDashboard = () => {
         >
           <SummaryCard
             title="Total Bookings"
-            value={allBookings?.meta.total || 0}
+            value={allBookings?.meta?.total || 0}
             description="Total number of bookings."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -56,7 +56,7 @@ const SuperAdminDashboard = () => {
         >
           <SummaryCard
             title="Total Photographer"
-            value={allPhotographers?.meta.total || 0}
+            value={allPhotographers?.meta?.total || 0}
             description="Total number of photographers."
             color="#3f8600"
             icon={<UserOutlined />}
@@ -70,7 +70,7 @@ const SuperAdminDashboard = () => {
         >
           <SummaryCard
             title="Total Client"
-            value={allClients?.meta.total || 0}
+            value={allClients?.meta?.total || 0}
             description="Total number of client."
             color="#3f8600"
             icon={<UserOutlined />}
