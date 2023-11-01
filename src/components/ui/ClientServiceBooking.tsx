@@ -109,15 +109,13 @@ const ClientServiceBooking = () => {
 
   const onTimeChange = (el: any) => {
     const localTimezoneOffsetInMinutes = dayjs().utcOffset();
-    // console.log(el);
+
     const startTime = dayjs(el[0])
       .subtract(localTimezoneOffsetInMinutes, "minute")
       .format("YYYY-MM-DDTHH:mm:ss[Z]");
     const endTime = dayjs(el[1])
       .subtract(localTimezoneOffsetInMinutes, "minute")
       .format("YYYY-MM-DDTHH:mm:ss[Z]");
-
-    // console.log(dayjs(endTime).format("hh:mm A"));
 
     setStartTime(startTime);
     setEndTime(endTime);

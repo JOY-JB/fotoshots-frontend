@@ -39,8 +39,6 @@ const BookingEditPage = ({ params }: IProps) => {
     try {
       const res = await updateBooking({ id, body: data }).unwrap();
 
-      console.log(res);
-
       if (!!res) {
         message.success("Booking updated successfully");
       }

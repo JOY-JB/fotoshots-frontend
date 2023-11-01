@@ -22,8 +22,6 @@ const Form = ({
   resolver,
   persistKey,
 }: FormProps) => {
-  // console.log(defaultValues);
-
   const formConfig: FormConfig = {};
 
   if (!!defaultValues) formConfig["defaultValues"] = defaultValues;
