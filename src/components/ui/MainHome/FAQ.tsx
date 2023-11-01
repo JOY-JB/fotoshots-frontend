@@ -2,6 +2,7 @@ import Loading from "@/app/loading";
 import { useGetAllFAQsQuery } from "@/redux/api/contentApi";
 import { IContent } from "@/types";
 import { Collapse, Layout, Typography } from "antd";
+import { useEffect, useState } from "react";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -9,6 +10,21 @@ const { Panel } = Collapse;
 
 const FaqSection = () => {
   const { data: faqData, isLoading } = useGetAllFAQsQuery(undefined);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setIsDesktop(window.innerWidth > 900);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    handleWindowResize();
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -28,7 +44,7 @@ const FaqSection = () => {
           maxWidth: "1400px",
         }}
       >
-        <div style={{ width: "900px" }}>
+        <div style={{ width: isDesktop ? "900px" : "100" }}>
           <div style={{ textAlign: "center", marginBottom: "30px" }}>
             <Title>FAQ</Title>
             <Text type="secondary" italic style={{ fontSize: "1.1rem" }}>

@@ -41,36 +41,52 @@ const HeroSection = () => {
           <div>
             <div style={contentStyle}>
               <div style={overlayStyle}>
-                <Title
+                <div
                   style={{
-                    color: "#fff",
-                    fontSize: "3rem",
-                    fontWeight: "bolder",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    width: "90%",
                   }}
                 >
-                  Welcome to Our Photographer Booking Platform
-                </Title>
-                <Text style={{ color: "#fff", fontSize: "1.2rem" }}>
-                  Discover and book a wide range of services with ease.
-                </Text>
+                  <Title
+                    style={{
+                      color: "#fff",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    Welcome to Our Photographer Booking Platform
+                  </Title>
+                  <Text style={{ color: "#fff", fontSize: "1.2rem" }}>
+                    Discover and book a wide range of services with ease.
+                  </Text>
+                </div>
               </div>
             </div>
           </div>
           <div>
             <div style={contentStyle}>
               <div style={overlayStyle}>
-                <Title
+                <div
                   style={{
-                    color: "#fff",
-                    fontSize: "3rem",
-                    fontWeight: "bolder",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    width: "80%",
                   }}
                 >
-                  Explore Our Services
-                </Title>
-                <Text style={{ color: "#fff", fontSize: "1.2rem" }}>
-                  Choose from a variety of services tailored to your needs.
-                </Text>
+                  <Title
+                    style={{
+                      color: "#fff",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    Explore Our Services
+                  </Title>
+                  <Text style={{ color: "#fff", fontSize: "1.2rem" }}>
+                    Choose from a variety of services tailored to your needs.
+                  </Text>
+                </div>
               </div>
             </div>
           </div>

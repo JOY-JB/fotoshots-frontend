@@ -7,3 +7,15 @@
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-family: "Roboto Condensed", sans-serif;
 }
+
+.logo {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.MainHeaderTitle {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

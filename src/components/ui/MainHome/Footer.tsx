@@ -82,7 +82,7 @@ const AppFooter = () => {
             </Space>
           </div>
         </Col>
-        <Col xs={24} sm={24} md={8}>
+        <Col xs={0} sm={24} md={8}>
           <Row justify="center" gutter={[16, 16]}>
             <Col>
               <Image src={image1} width={80} alt="Sample Image 1" />

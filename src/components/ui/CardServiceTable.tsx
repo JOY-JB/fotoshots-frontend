@@ -48,57 +48,81 @@ const CardServiceTable = () => {
     <div>
       <Divider />
       <ActionBar>
-        <Input
-          type="text"
-          value={searchTerm}
-          placeholder="Search.."
-          style={{
-            width: "20%",
-          }}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          suffix={<SearchOutlined />}
-        />
-        <div style={{ display: "flex" }}>
-          <Input
-            type="number"
-            placeholder="Min Price"
-            value={minPrice}
-            onChange={(e) =>
-              setMinPrice(
-                Number(e.target.value) ? Number(e.target.value) : undefined
-              )
-            }
-          />
-          <Divider type="vertical" />
-          <Input
-            type="number"
-            value={maxPrice}
-            placeholder="Max Price"
-            onChange={(e) =>
-              setMaxPrice(
-                Number(e.target.value) ? Number(e.target.value) : undefined
-              )
-            }
-          />
-          <Divider type="vertical" />
-          {(!!sortBy ||
-            !!sortOrder ||
-            !!searchTerm ||
-            minPrice ||
-            maxPrice) && (
-            <Button
-              type="dashed"
-              style={{ marginRight: "5px" }}
-              onClick={handleReset}
-            >
-              <ReloadOutlined />
-            </Button>
-          )}
+        <div style={{ width: "100%" }}>
+          <Row
+            gutter={[16, 16]}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <Input
+                type="text"
+                value={searchTerm}
+                placeholder="Search.."
+                style={{
+                  width: "100%",
+                  maxWidth: "350px",
+                }}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                suffix={<SearchOutlined />}
+              />
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Input
+                  type="number"
+                  placeholder="Min Price"
+                  value={minPrice}
+                  style={{
+                    width: "100%",
+                    maxWidth: "250px",
+                  }}
+                  onChange={(e) =>
+                    setMinPrice(
+                      Number(e.target.value)
+                        ? Number(e.target.value)
+                        : undefined
+                    )
+                  }
+                />
+                <Divider type="vertical" />
+                <Input
+                  type="number"
+                  value={maxPrice}
+                  placeholder="Max Price"
+                  style={{
+                    width: "100%",
+                    maxWidth: "250px",
+                  }}
+                  onChange={(e) =>
+                    setMaxPrice(
+                      Number(e.target.value)
+                        ? Number(e.target.value)
+                        : undefined
+                    )
+                  }
+                />
+                <Divider type="vertical" />
+                {(!!sortBy ||
+                  !!sortOrder ||
+                  !!searchTerm ||
+                  minPrice ||
+                  maxPrice) && (
+                  <Button
+                    type="dashed"
+                    style={{ marginRight: "5px" }}
+                    onClick={handleReset}
+                  >
+                    <ReloadOutlined />
+                  </Button>
+                )}
+              </div>
+            </Col>
+          </Row>
         </div>
       </ActionBar>
       <Divider />
       <Row gutter={[16, 16]}>
-        {services.map((service) => (
+        {services.map((service: any) => (
           <Col xs={24} sm={12} md={8} lg={6} xl={6} key={service.id}>
             <Card title={service.title} bordered={false}>
               <div style={{ display: "flex", flexDirection: "column" }}>

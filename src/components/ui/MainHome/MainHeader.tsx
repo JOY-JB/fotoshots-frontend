@@ -74,13 +74,13 @@ const MainHeader = () => {
         WebkitBackdropFilter: "blur(6px)",
         borderRadius: "10px",
         border: "1px solid rgba(255, 255, 255, 0.18)",
+        padding: "0 15px",
       }}
     >
-      <Image src={logo} width={150} alt="logo" />
+      <Image className="logo" src={logo} width={150} alt="logo" />
       <Menu
         theme="light"
         mode="horizontal"
-        // defaultSelectedKeys={["home"]}
         selectable={false}
         items={items}
         style={{
@@ -96,12 +96,16 @@ const MainHeader = () => {
           display: "flex",
           justifyContent: "end",
           alignItems: "center",
-          minWidth: "12%",
+          minWidth: "20%",
         }}
       >
         {role ? (
           <>
-            <Title level={5} style={{ margin: "auto 8px" }}>
+            <Title
+              className="MainHeaderTitle"
+              level={5}
+              style={{ margin: "auto 8px" }}
+            >
               {role === "SUPER_ADMIN"
                 ? "Super Admin"
                 : role === "ADMIN"

@@ -19,18 +19,33 @@ const PhotographersSection = () => {
   }
   const photographerData = data?.photographers;
 
+  let slidesToShow = 4;
+  let carouselMargin = "0 10px";
+
+  if (window.innerWidth <= 768) {
+    slidesToShow = 1;
+    carouselMargin = "auto";
+  } else if (window.innerWidth <= 992) {
+    slidesToShow = 2;
+    carouselMargin = "auto";
+  } else {
+    slidesToShow = 4;
+    carouselMargin = "0 10px";
+  }
+
   return (
     <Layout
       style={{
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: "10rem 0",
       }}
     >
       <Content
         style={{
-          maxWidth: "1400px",
+          maxWidth: "100%",
+          padding: "0 20px",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
@@ -42,7 +57,7 @@ const PhotographersSection = () => {
         <Carousel
           autoplay
           dots={{ className: "carousel-dots" }}
-          slidesToShow={4}
+          slidesToShow={slidesToShow}
         >
           {photographerData &&
             photographerData.map((photographer, index) => (
@@ -50,7 +65,7 @@ const PhotographersSection = () => {
                 <Card
                   style={{
                     height: "520px",
-                    margin: "0 10px",
+                    margin: carouselMargin,
                     width: 300,
                     display: "flex",
                     flexDirection: "column",

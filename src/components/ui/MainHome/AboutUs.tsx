@@ -20,20 +20,28 @@ const AboutUsSection = () => {
           maxWidth: "1400px",
         }}
       >
-        <Row gutter={[16, 16]} justify="center" align="middle">
+        <Row gutter={[24, 24]} justify="center" align="middle">
           <Col
             xs={24}
-            sm={12}
+            sm={24}
+            md={12}
+            lg={12}
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              padding: "0",
             }}
           >
-            <Image src={aboutUs} alt="About Us" width={500} />
+            <Image
+              src={aboutUs}
+              alt="About Us"
+              width={500}
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
           </Col>
-          <Col xs={24} sm={12}>
-            <div>
+          <Col xs={24} sm={24} md={12} lg={12}>
+            <div style={{ padding: "0 10px" }}>
               <Title level={1}>About Us</Title>
               <Paragraph style={{ fontSize: "1rem" }}>
                 We are a passionate team of photographers dedicated to capturing
