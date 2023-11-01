@@ -4,7 +4,7 @@ import { IContent } from "@/types";
 import { Collapse, Layout, Typography } from "antd";
 
 const { Content } = Layout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const FaqSection = () => {
@@ -15,31 +15,37 @@ const FaqSection = () => {
   }
 
   return (
-    <Content
+    <Layout
       style={{
-        padding: "50px 0",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        margin: "10rem 0",
       }}
     >
-      <div style={{ width: "900px" }}>
-        <div style={{ textAlign: "center", marginBottom: "30px" }}>
-          <Title level={2}>FAQ</Title>
-          <Title level={4} type="secondary">
-            Answers to common questions
-          </Title>
+      <Content
+        style={{
+          maxWidth: "1400px",
+        }}
+      >
+        <div style={{ width: "900px" }}>
+          <div style={{ textAlign: "center", marginBottom: "30px" }}>
+            <Title>FAQ</Title>
+            <Text type="secondary" italic style={{ fontSize: "1.1rem" }}>
+              Answers to common questions
+            </Text>
+          </div>
+          <Collapse accordion>
+            {faqData &&
+              faqData.map((faq: IContent, index: number) => (
+                <Panel header={faq.title} key={index}>
+                  <p>{faq.content}</p>
+                </Panel>
+              ))}
+          </Collapse>
         </div>
-        <Collapse accordion>
-          {faqData &&
-            faqData.map((faq: IContent, index: number) => (
-              <Panel header={faq.title} key={index}>
-                <p>{faq.content}</p>
-              </Panel>
-            ))}
-        </Collapse>
-      </div>
-    </Content>
+      </Content>
+    </Layout>
   );
 };
 

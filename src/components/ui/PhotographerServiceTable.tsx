@@ -61,14 +61,17 @@ const PhotographerServiceTable = () => {
     {
       title: "Title",
       dataIndex: "title",
+      width: "18%",
     },
     {
       title: "Description",
       dataIndex: "description",
+      width: "60%",
     },
     {
       title: "Price",
       dataIndex: "price",
+      width: "8%",
     },
     {
       title: "Action",

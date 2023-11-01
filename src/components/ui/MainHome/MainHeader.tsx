@@ -88,6 +88,7 @@ const MainHeader = () => {
           display: "flex",
           justifyContent: "center",
           backgroundColor: "transparent",
+          fontSize: "16px",
         }}
       />
       <div

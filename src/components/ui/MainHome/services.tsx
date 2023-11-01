@@ -20,66 +20,88 @@ const ServicesSection = () => {
   }
   const servicesData = data?.services;
 
+  const truncateDescription = (description: string) => {
+    const wordArray = description.split(" ");
+    if (wordArray.length <= 30) {
+      return description;
+    }
+    const truncatedDescription = wordArray.slice(0, 35).join(" ");
+    return `${truncatedDescription}...`;
+  };
+
   return (
-    <Content style={{ padding: "40px 0" }}>
-      <div style={{ textAlign: "center" }}>
-        <Title level={2}>Featured Services</Title>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {servicesData &&
-          servicesData.slice(0, 4).map((service, index) => (
-            <Card
-              key={index}
-              style={{ width: 300, margin: "16px" }}
-              cover={
-                index === 0 ? (
-                  <Image
-                    alt={service.title}
-                    src={eventPhotography}
-                    width={300}
-                    height={200}
-                  />
-                ) : index === 1 ? (
-                  <Image
-                    alt={service.title}
-                    src={familyPortrait}
-                    width={300}
-                    height={200}
-                  />
-                ) : index === 2 ? (
-                  <Image
-                    alt={service.title}
-                    src={weddingPhoto}
-                    width={300}
-                    height={200}
-                  />
-                ) : index === 3 ? (
-                  <Image
-                    alt={service.title}
-                    src={weddingPhoto2}
-                    width={300}
-                    height={200}
-                  />
-                ) : null
-              }
-            >
-              <Card.Meta
-                title={service.title}
-                description={<Paragraph>{service.description}</Paragraph>}
-              />
-              <p style={{ marginTop: "16px" }}>
-                <strong>Price: {service.price}</strong>
-              </p>
-            </Card>
-          ))}
-      </div>
-    </Content>
+    <Layout
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "10rem 0",
+      }}
+    >
+      <Content style={{ maxWidth: "1480px" }}>
+        <div style={{ textAlign: "center" }}>
+          <Title>Featured Services</Title>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {servicesData &&
+            servicesData.slice(0, 4).map((service, index) => (
+              <Card
+                key={index}
+                style={{ width: 300, margin: "16px", position: "relative" }}
+                cover={
+                  index === 0 ? (
+                    <Image
+                      alt={service.title}
+                      src={eventPhotography}
+                      width={300}
+                      height={200}
+                    />
+                  ) : index === 1 ? (
+                    <Image
+                      alt={service.title}
+                      src={familyPortrait}
+                      width={300}
+                      height={200}
+                    />
+                  ) : index === 2 ? (
+                    <Image
+                      alt={service.title}
+                      src={weddingPhoto}
+                      width={300}
+                      height={200}
+                    />
+                  ) : index === 3 ? (
+                    <Image
+                      alt={service.title}
+                      src={weddingPhoto2}
+                      width={300}
+                      height={200}
+                    />
+                  ) : null
+                }
+              >
+                <Card.Meta
+                  title={service.title}
+                  description={
+                    <Paragraph>
+                      {truncateDescription(service.description)}
+                    </Paragraph>
+                  }
+                />
+                <p style={{ marginTop: "16px" }}>
+                  <strong>Price: {service.price}</strong>
+                </p>
+              </Card>
+            ))}
+        </div>
+      </Content>
+    </Layout>
   );
 };
 

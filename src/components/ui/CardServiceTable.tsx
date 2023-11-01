@@ -97,7 +97,7 @@ const CardServiceTable = () => {
         </div>
       </ActionBar>
       <Divider />
-      <Row gutter={16}>
+      <Row gutter={[16, 16]}>
         {services.map((service) => (
           <Col xs={24} sm={12} md={8} lg={6} xl={6} key={service.id}>
             <Card title={service.title} bordered={false}>

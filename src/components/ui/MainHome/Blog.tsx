@@ -4,7 +4,7 @@ import { IContent } from "@/types";
 import { Card, Col, Layout, Row, Typography } from "antd";
 
 const { Content } = Layout;
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 const BlogSection = () => {
   const { data: blogData, isLoading } = useGetAllBlogPostsQuery(undefined);
@@ -14,31 +14,38 @@ const BlogSection = () => {
   }
 
   return (
-    <Content
-      style={{ padding: "50px 0", maxWidth: "1400px", margin: "0 auto" }}
+    <Layout
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "10rem 0",
+      }}
     >
-      <div style={{ textAlign: "center", marginBottom: "30px" }}>
-        <Title level={2}>Photography Blog</Title>
-        <Title level={4} type="secondary">
-          Explore our latest articles and photography tips
-        </Title>
-      </div>
-      <Row gutter={[16, 16]}>
-        {blogData &&
-          blogData.map((blog: IContent, index: number) => (
-            <Col key={index} xs={24} sm={12} md={8}>
-              <Card
-                title={blog.title}
-                style={{
-                  minHeight: "240px",
-                }}
-              >
-                <Paragraph>{blog.content}</Paragraph>
-              </Card>
-            </Col>
-          ))}
-      </Row>
-    </Content>
+      <Content style={{ maxWidth: "1400px" }}>
+        <div style={{ textAlign: "center", marginBottom: "30px" }}>
+          <Title>Photography Blog</Title>
+          <Text type="secondary" italic style={{ fontSize: "1.1rem" }}>
+            Explore our latest articles and photography tips
+          </Text>
+        </div>
+        <Row gutter={[16, 16]}>
+          {blogData &&
+            blogData.map((blog: IContent, index: number) => (
+              <Col key={index} xs={24} sm={12} md={8}>
+                <Card
+                  title={blog.title}
+                  style={{
+                    minHeight: "240px",
+                  }}
+                >
+                  <Paragraph>{blog.content}</Paragraph>
+                </Card>
+              </Col>
+            ))}
+        </Row>
+      </Content>
+    </Layout>
   );
 };
 
