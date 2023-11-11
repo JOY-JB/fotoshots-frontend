@@ -59,8 +59,9 @@ const ServicesTable = ({ role }: { role: string }) => {
     setIsModalOpen(false);
     message.loading("Deleting service...");
     try {
-      await deleteService(serviceIdToDelete);
-      message.success("Service deleted successfully");
+      const res = await deleteService(serviceIdToDelete).unwrap();
+
+      if (res) message.success("Service deleted successfully");
     } catch (error) {
       console.error(error);
     }
