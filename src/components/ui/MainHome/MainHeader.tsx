@@ -89,6 +89,8 @@ const MainHeader = () => {
           justifyContent: "center",
           backgroundColor: "transparent",
           fontSize: "16px",
+          marginRight: "auto",
+          marginLeft: "auto",
         }}
       />
       <div
@@ -96,7 +98,7 @@ const MainHeader = () => {
           display: "flex",
           justifyContent: "end",
           alignItems: "center",
-          minWidth: "20%",
+          minWidth: "10%",
         }}
       >
         {role ? (
