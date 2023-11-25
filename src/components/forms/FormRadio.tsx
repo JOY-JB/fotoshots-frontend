@@ -59,7 +59,8 @@ const FormRadio = ({
         render={({ field }) => (
           <Radio.Group
             size={size}
-            defaultValue={defaultValue ? defaultValue : field.value}
+            // defaultValue={defaultValue ? defaultValue : field.value}
+            value={defaultValue ? defaultValue : field.value}
             onChange={handleOnChange}
           >
             {items.map((item) => (

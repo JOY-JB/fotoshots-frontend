@@ -3,6 +3,7 @@ import { useGetPhotographersQuery } from "@/redux/api/photographerApi";
 import { Card, Carousel, Layout, Typography } from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import jubayer from "../../../../public/images/jubayer.jpeg";
 import prito from "../../../../public/images/prito.jpeg";
 import samim from "../../../../public/images/samim-reza.jpeg";
@@ -13,6 +14,31 @@ const { Title, Text } = Typography;
 
 const PhotographersSection = () => {
   const { data, isLoading } = useGetPhotographersQuery({});
+  const [slidesToShow, setSlidesToShow] = useState(4);
+  const [carouselMargin, setCarouselMargin] = useState("0 10px");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setSlidesToShow(1);
+        setCarouselMargin("auto");
+      } else if (window.innerWidth <= 992) {
+        setSlidesToShow(2);
+        setCarouselMargin("auto");
+      } else {
+        setSlidesToShow(4);
+        setCarouselMargin("0 10px");
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -26,20 +52,6 @@ const PhotographersSection = () => {
     )
     .slice(0, 4);
 
-  let slidesToShow = 4;
-  let carouselMargin = "0 10px";
-
-  if (window.innerWidth <= 768) {
-    slidesToShow = 1;
-    carouselMargin = "auto";
-  } else if (window.innerWidth <= 992) {
-    slidesToShow = 2;
-    carouselMargin = "auto";
-  } else {
-    slidesToShow = 4;
-    carouselMargin = "0 10px";
-  }
-
   return (
     <Layout
       style={{
@@ -47,6 +59,9 @@ const PhotographersSection = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        maxWidth: "1280px",
+        marginRight: "auto",
+        marginLeft: "auto",
       }}
     >
       <Content

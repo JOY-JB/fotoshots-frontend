@@ -10,7 +10,7 @@ const { Panel } = Collapse;
 
 const FaqSection = () => {
   const { data: faqData, isLoading } = useGetAllFAQsQuery(undefined);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 900);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -44,7 +44,7 @@ const FaqSection = () => {
           maxWidth: "1400px",
         }}
       >
-        <div style={{ width: isDesktop ? "900px" : "100" }}>
+        <div style={{ width: isDesktop ? "900px" : "100%" }}>
           <div style={{ textAlign: "center", marginBottom: "30px" }}>
             <Title>FAQ</Title>
             <Text type="secondary" italic style={{ fontSize: "1.1rem" }}>
