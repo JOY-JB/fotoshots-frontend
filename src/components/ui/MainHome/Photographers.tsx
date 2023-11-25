@@ -17,7 +17,14 @@ const PhotographersSection = () => {
   if (isLoading) {
     return <Loading />;
   }
-  const photographerData = data?.photographers;
+  const photographerData = data?.photographers
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(a?.createdAt as string).getTime() -
+        new Date(b?.createdAt as string).getTime()
+    )
+    .slice(0, 4);
 
   let slidesToShow = 4;
   let carouselMargin = "0 10px";
