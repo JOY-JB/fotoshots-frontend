@@ -12,13 +12,16 @@ const Sidebar = () => {
 
   return (
     <Sider
-      collapsible
+      // collapsible
       collapsed={collapsed}
+      breakpoint="lg"
+      // collapsedWidth="0"
       onCollapse={(value) => setCollapsed(value)}
-      width={280}
+      // width={280}
       style={{
         height: "100vh",
-        overflow: "auto",
+        // background: "red",
+        // overflow: "auto",
         position: "sticky",
         left: 0,
         top: 0,
