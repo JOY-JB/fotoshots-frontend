@@ -89,7 +89,12 @@ const ClientRegistrationPageComponent = () => {
           alignItems: "center",
         }}
       >
-        <Image src={registrationImage} width={700} alt="Registration image" />
+        <Image
+          src={registrationImage}
+          width={500}
+          alt="Registration image"
+          style={{ maxWidth: "100%" }}
+        />
       </Col>
       <Col sm={12} md={8}>
         <h1

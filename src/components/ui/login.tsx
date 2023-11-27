@@ -55,7 +55,12 @@ const LoginPageComponent = () => {
           alignItems: "center",
         }}
       >
-        <Image src={loginImage} width={700} alt="Login image" />
+        <Image
+          src={loginImage}
+          width={500}
+          alt="Login image"
+          style={{ maxWidth: "100%" }}
+        />
       </Col>
       <Col sm={12} md={8}>
         <h1
