@@ -12,10 +12,9 @@ const Sidebar = () => {
 
   return (
     <Sider
-      // collapsible
+      collapsible
       collapsed={collapsed}
       breakpoint="lg"
-      // collapsedWidth="0"
       onCollapse={(value) => setCollapsed(value)}
       // width={280}
       style={{
