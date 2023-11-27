@@ -7,7 +7,7 @@ import {
 } from "@/redux/api/photographerApi";
 import { DeleteFilled, ReloadOutlined } from "@ant-design/icons";
 import { Button, Input, message } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ActionBar from "./ActionBar";
 import MyModal from "./MyModal";
 import MyTable from "./MyTable";
@@ -20,6 +20,7 @@ const PhotographersTable = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [inputWidth, setInputWidth] = useState<string>("20%");
 
   const query: Record<string, any> = {};
   query["limit"] = pageLimit;
@@ -102,6 +103,20 @@ const PhotographersTable = () => {
     setSortOrder("");
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setInputWidth(window.innerWidth <= 767 ? "60%" : "20%");
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <ActionBar title="Photographer List">
@@ -110,7 +125,7 @@ const PhotographersTable = () => {
           value={email}
           placeholder="Search by email"
           style={{
-            width: "20%",
+            width: inputWidth,
           }}
           onChange={(e) => setEmail(e.target.value)}
         />

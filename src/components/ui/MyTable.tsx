@@ -40,6 +40,7 @@ const MyTable = ({
       dataSource={dataSource}
       pagination={paginationConfig}
       onChange={onTableChange}
+      scroll={{ x: 400 }}
     />
   );
 };
