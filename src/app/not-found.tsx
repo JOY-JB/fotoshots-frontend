@@ -14,7 +14,6 @@ const NotFoundPage = () => {
       }}
     >
       <Image src={errorImage} width={600} alt="error Image" />
-
       <Link href={"/"}>
         <Button type="primary" size="large" shape="round">
           Home

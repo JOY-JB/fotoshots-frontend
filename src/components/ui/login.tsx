@@ -98,7 +98,7 @@ const LoginPageComponent = () => {
           </Form>
 
           <p style={{ marginTop: "35px", textAlign: "center" }}>
-            Not registered yet? <Link href="/register">registration here</Link>
+            Not registered yet ? <Link href="/register">registration here</Link>
           </p>
         </div>
       </Col>

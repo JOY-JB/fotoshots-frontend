@@ -151,7 +151,7 @@ const ClientRegistrationPageComponent = () => {
           </Form>
 
           <p style={{ marginTop: "35px", textAlign: "center" }}>
-            Already registered? <Link href="/login">Login here</Link>
+            Already registered ? <Link href="/login">Login here</Link>
           </p>
         </div>
       </Col>
